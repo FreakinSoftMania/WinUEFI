@@ -1,15 +1,15 @@
 ---
-name: Feature Request
-about: Suggest an idea for Easy UEFI
+name: Bug
+about: Send an bug Easy UEFI has that needs to be fixed.
 ---
 
 <!--
-  Thank you for filling out a feature request for Easy UEFI! Please be as detailed as possible so that we may consider and review the request easier.
-  We ask that you search all the issues to avoid a duplicate feature request. If one exists, please reply if you have anything to add.
-  Before requesting a new feature, please make sure you are using the latest version and that the feature you are requesting is not already in Easy UEFI.
+  Thank you for filling out a bug that Easy UEFI has! It helps me make the application better. Please be as detailed as possible so that i may consider and review the bug easier.
+  I ask that you search all the issues to avoid a duplicate bug. If one exists, please reply if you have anything to add.
+  Before requesting a bug, please make sure you are using the latest version and that the bug you are requesting is not already fixed in Easy UEFI.
 -->
 
-## Is your feature request related to a problem?
+## Is your bug related to a suggestion?
 <!--
   Please give some context for this request. Why do you want it added?
 -->
