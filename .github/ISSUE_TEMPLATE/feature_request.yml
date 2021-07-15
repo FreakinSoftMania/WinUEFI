@@ -11,3 +11,5 @@ body:
   attributes:
     label: Describe the bug
     description: A clear and concise description of what the suggestion is.
+  validations:
+    required: true
