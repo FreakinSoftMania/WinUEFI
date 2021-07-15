@@ -6,9 +6,8 @@ body:
 - type: markdown
   attributes:
     value: |
-      Thanks for taking the time to fill out this suggestion for Easy UEFI! Fill out the following form to your best ability to help us make the software better.
-     attributes:
-     - type: textarea
+      Thanks for taking the time to fill out this idea for Easy UEFI! Fill out the following form to your best ability to help us know what you want.
+- type: textarea
   attributes:
-    label: Describe the idea
+    label: Describe the bug
     description: A clear and concise description of what the suggestion is.
