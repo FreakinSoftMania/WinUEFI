@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea for Easy UEFI
+description: Suggest an idea for Easy UEFI
 labels: suggestion
 body:
 - type: markdown
