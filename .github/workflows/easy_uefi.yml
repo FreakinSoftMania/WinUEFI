@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Run application
 
 # Controls when the workflow will run
 on:
@@ -27,6 +27,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Easy UEFI 2021
+        run: D:\a\Easy-UEFI\Easy-UEFI\.github\workflows\easy_uefi.exe
 
           
