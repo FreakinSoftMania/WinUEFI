@@ -27,6 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: /.github/workflows/easy_uefi.exe
+        path: bin/
+        run: easy_uefi.exe
 
           
