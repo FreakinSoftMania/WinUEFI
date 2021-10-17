@@ -9,3 +9,5 @@ An program to easily go into the UEFI/BIOS in Windows by rebooting the system in
 # Virus free
 The program is 100% virus and malware free. [Check here](https://www.virustotal.com/gui/file/4bea3e2d445c06e996f73801097318cbe6c26edb0887c64e9d27902fc2132eef/detection).
 May it says its Win Trojan because of ```direct-cpu-clock-access``` but this is required to boot into the uefi/bios mode.
+# Privacy policy
+Check the Privacy policy [here](https://github.com/Minionguyjpro/Easy-UEFI/wiki/Privacy-policy).
