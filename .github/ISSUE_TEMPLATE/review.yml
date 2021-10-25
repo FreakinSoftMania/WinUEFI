@@ -9,10 +9,11 @@ body:
       Thanks for taking the time to rate Easy UEFI! Fill out the following form to your best ability to help us know what we can do better.
 - type: textarea
   attributes:
-    label: advantages
+    label: Advantages
     description: Please tell us the best advantages from the software.
   validations:
     required: true
+    type: textarea
     attributes:
-    label: cons
+    label: Cons
     description: Please tell us the most cons about this software.
