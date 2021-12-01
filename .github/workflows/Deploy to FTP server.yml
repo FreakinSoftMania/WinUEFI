@@ -1,3 +1,4 @@
+# This will copy all source code data from the repository to an FTP server on push.
 on: push
 name: 🚀 Deploy website on push
 jobs:
