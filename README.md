@@ -11,3 +11,5 @@ The program is 100% virus and malware free. [Check here](https://www.virustotal.
 It requires ```direct-cpu-clock-access``` to boot into the uefi/bios mode. So it's no virus.
 # Privacy policy
 Check the Privacy policy [here](https://github.com/Minionguyjpro/Easy-UEFI/wiki/Privacy-policy).
+# How it works
+I made an VERY easy script with 1-line only which shuts down the pc and reboots but into the mode to chance firmware settings.
