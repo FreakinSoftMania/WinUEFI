@@ -1,0 +1,22 @@
+name: Build Inno Setup Installer
+on: push
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create report file
+        run: date +%s > report.txt
+        
+      - name: Building the installer
+        run: |
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "D:\a\WinUEFI\WinUEFI\bin\WinUEFI-setup.iss"
+        shell: cmd
+      
+      - name: Commit report
+        run: |
+          git config --global user.name 'Minionguyjpro'
+          git config --global user.email 'minionguyjpro@users.noreply.github.com'
+          git add -A
+          git commit -am "Created new version of Inno Setup installer"
+          git push origin Inno-Setup
