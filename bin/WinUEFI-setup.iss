@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WinUEFI"
-#define MyAppVersion "1.4.0"
+#define MyAppVersion "1.7.0"
 #define MyAppPublisher "Minionguyjpro"
 #define MyAppExeName "WinUEFI.exe"
 #define MyAppAssocName MyAppName + ""
@@ -35,7 +35,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags:
 
 [Files]
-Source: "C:\Users\hwkru\Documents\WinUEFI\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -68,4 +68,3 @@ begin
     if not Result then break;
   end;
 end;
-
