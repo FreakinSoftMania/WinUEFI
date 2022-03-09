@@ -8,7 +8,7 @@ An program to easily go into the UEFI/BIOS in Windows by rebooting the system in
 - ![Warning: Please save you work before starting this application.](https://via.placeholder.com/15/f03c15/000000?text=+) `Warning: Please save you work before starting this application.`
 # Virus free
 The program is 100% virus and malware free. [Check here](https://www.virustotal.com/gui/file/4bea3e2d445c06e996f73801097318cbe6c26edb0887c64e9d27902fc2132eef/detection).
-It requires ```direct-cpu-clock-access``` to boot into the uefi/bios mode. So it's no virus.
+It requires ```direct-cpu-clock-access``` to boot into the UEFI/BIOS mode. So it's no virus.
 # Privacy policy
 Check the Privacy policy [here](https://github.com/Minionguyjpro/Easy-UEFI/wiki/Privacy-policy).
 # How it works
