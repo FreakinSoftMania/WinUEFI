@@ -12,5 +12,6 @@ It requires ```direct-cpu-clock-access``` to boot into the UEFI/BIOS mode. So it
 # Privacy policy
 Check the Privacy policy [here](https://github.com/Minionguyjpro/Easy-UEFI/wiki/Privacy-policy).
 # How it works
-We made an VERY easy script with 1-line only which shuts down the pc and reboots but into the mode to change firmware settings.
-![QR Code](https://user-images.githubusercontent.com/66115754/159110544-ff708ef0-f34a-4c58-a80e-84e92e027860.png)
+We made an VERY easy script with 1-line only which shuts down the pc and reboots but into the UEFI/BIOS mode to change firmware settings.
+# QR Code
+<img src="https://user-images.githubusercontent.com/66115754/159110544-ff708ef0-f34a-4c58-a80e-84e92e027860.png" alt="WinUEFI x64 Setup QR Code" height="512" width="512" ></img>
