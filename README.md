@@ -3,6 +3,7 @@
 </p>
 <h1 align="center">WinUEFI</h1>
 
+[![Download WinUEFI](https://img.shields.io/sourceforge/dm/winuefi.svg)](https://sourceforge.net/projects/winuefi/files/latest/download)
 [![](https://img.shields.io/github/issues/Minionguyjpro/Easy-UEFI)](https://github.com/Minionguyjpro/Easy-UEFI/issues)
 <img title="" alt="" src="https://lh3.googleusercontent.com/fife/AAWUweUUTq8PEEpUErc2yGSsU5ITlUTg6preX9kz92hXuARfg_CZOM1G_PMqczCSoF1-81dO9HOg_WDc9BzMhsBbSutVlPa4CrK6KkcUdNQjqbzKqqozQV48Jr_7Wspsn5ofUudCgvspiOgyDJfs9bxRxVEcEPgVVcjDURBiPtpK0K2Dg3anzqBDsi6ghcmtKpcAojS12gvtUIXIjJ6wf_3thkiTan12fHjXXuTP-srajPIF6EL8_rDMGfKwB9Oqw5zE9z9DgV2WhbtXhfH0PnQOMpoTDRA5YlL7fNtwR_669w83mx2N2ccNpxNPqagKV_ygw_HXUm--JWH32ISUw-1yL0THzGd923_HjdH-b66dZw_tVHJQccrQWubaIKIRoPanRXhe9t40FahAsVUjPdUBPb4OkIuL65ZdT8DlggFjUQ87uIkq847JvGJNf3Dg6ewRQOPfqzqQbEAkjLdZkS2XQbniIqchMwSkV5eBmEjBWkFnC0DkEAXgmW4kU04OtrzfApNBWeMiZE1JGxhYBeLKhV2ndkBUrvenwarOo6VltYY9dpZcthHdyKfBXCH8cw6RlRb3mvBZFodU-YPjRjwtpQCKT_FRnfY9lR1Rz0p2nFTf32v3K_logHe7yT1Nl9ZJXEFchqjC0qX4vKibYVEC2MSxqiC7o1aRfCZubVh_Erze8HO-tcMu15osILRMnJIwM0sYf5biDNlcVdauaF_NMmwDI_8BjdZ0nXsGOA">
 
