@@ -6,9 +6,9 @@ name: Build WinUEFI batch files
 on:
   # Triggers the workflow on push or pull request events
   push:
-    branches: [ ${{ github.ref_name }} ]
+    branches: [ $GITHUB_REF_NAME ]
   pull_request:
-    branches: [ ${{ github.ref_name }} ]
+    branches: [ $GITHUB_REF_NAME ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
