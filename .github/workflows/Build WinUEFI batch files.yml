@@ -28,4 +28,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run script
         run: |
-        D:\a\WinUEFI\WinUEFI\.github\workflows\Bat_To_Exe_Converter_x64.exe /bat "WinUEFI.bat" /exe "WinUEFI-test.exe"
+         D:\a\WinUEFI\WinUEFI\.github\workflows\Bat_To_Exe_Converter_x64.exe /bat "WinUEFI.bat" /exe "WinUEFI-test.exe"
