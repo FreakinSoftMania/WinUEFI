@@ -27,7 +27,6 @@ jobs:
       - name: Run script
         run: |
          D:\a\WinUEFI\WinUEFI\.github\workflows\Bat_To_Exe_Converter_x64.exe /bat "WinUEFI.bat" /exe "D:\a\WinUEFI\WinUEFI\WinUEFI-test.exe"
-        shell: cmd
 
       - name: Push commit
         run: |
