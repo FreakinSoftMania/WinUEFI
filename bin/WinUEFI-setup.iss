@@ -57,7 +57,7 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes
 
 [Icons]
 Name: "{autodesktop}\{#MyAppName}"; \
-    Filename: "{app}\{#MyAppExeName}"; Tasks: uefidesktopicon
+    Filename: "{app}\{#MyAppExeName}"; Tasks: appdesktopicon
 Name: "{autodesktop}\WinUEFI Console"; \
     Filename: "{app}\WinUEFI-console.exe"; Tasks: ueficondesktopicon
 Name: "{autodesktop}\WinUEFI (32-bit)"; \
