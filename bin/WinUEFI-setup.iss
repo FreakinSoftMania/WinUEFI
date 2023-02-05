@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WinUEFI"
-#define MyAppVersion "1.9.0"
+#define MyAppVersion "2.0.0"
 #define MyAppPublisher "Minionguyjpro"
 #define MyAppExeName "WinUEFI.exe"
 #define MyAppAssocName MyAppName + ""
@@ -32,10 +32,20 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags:
+Name: "appdesktopicon"; Description: "WinUEFI icon"; \
+    GroupDescription: "{cm:AdditionalIcons}"
+Name: "ueficondesktopicon"; Description: "WinUEFI Console icon"; \
+    GroupDescription: "{cm:AdditionalIcons}"
+Name: "uefi32desktopicon"; Description: "WinUEFI (32-bit) icon"; \
+    GroupDescription: "{cm:AdditionalIcons}"
+Name: "uefi32condesktopicon"; Description: "WinUEFI (32-bit) Console icon"; \
+    GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "C:\Users\hwkru\Documents\WinUEFI\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\{MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x64-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
@@ -46,9 +56,14 @@ Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; Value
 Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{autodesktop}\{#MyAppName}"; \
+    Filename: "{app}\{#MyAppExeName}"; Tasks: uefidesktopicon
+Name: "{autodesktop}\WinUEFI Console"; \
+    Filename: "{app}\WinUEFI-console.exe"; Tasks: ueficondesktopicon
+Name: "{autodesktop}\WinUEFI (32-bit)"; \
+    Filename: "{app}\WinUEFI-x86.exe"; Tasks: uefi32desktopicon
+Name: "{autodesktop}\WinUEFI (32-bit) Console"; \
+    Filename: "{app}\WinUEFI-x86-console.exe"; Tasks: uefi32condesktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall; Check: NoRunSwitch
