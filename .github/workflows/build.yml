@@ -35,10 +35,10 @@ jobs:
       # Converts the batch file into an executable program for Windows
       - name: Build BAT to EXE application
         run: |
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x64-console.exe" /x64 /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x64.exe" /x64 /invisible /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x86-console.exe" /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x86.exe" /icon /invisible "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-x64-console.exe" /x64 /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-x64.exe" /x64 /invisible /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-x86-console.exe" /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-x86.exe" /icon /invisible "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
         shell: cmd
 
       - uses: actions/upload-artifact@v3
