@@ -42,7 +42,7 @@ Name: "uefi32condesktopicon"; Description: "WinUEFI (32-bit) Console icon"; \
     GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "D:\a\WinUEFI\WinUEFI\{MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x64-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\a\WinUEFI\WinUEFI\WinUEFI-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
