@@ -1,0 +1,67 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build EXE application and installer
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Sets environent variables for the complete workflow
+env:
+  REPO_PATH: 'D:\a\WinUEFI\WinUEFI'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_exe:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Set env
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}+1" >> $GITHUB_ENV
+          echo "REPO_PATH=D:\a\WinUEFI\WinUEFI" >> $GITHUB_ENV
+      # Converts the batch file into an executable program for Windows
+      - name: Build BAT to EXE application
+        run: |
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x64-console.exe" /x64 /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x64.exe" /x64 /invisible /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x86-console.exe" /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-portable-x86.exe" /icon /invisible "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+        shell: cmd
+
+      - uses: actions/upload-artifact@v3
+        with:
+         name: WinUEFI
+         path: bin/*.exe
+ 
+  build_installer:
+   needs: build_exe
+   runs-on: windows-latest
+   steps:
+      - uses: actions/checkout@v3
+   
+      - uses: actions/download-artifact@v3
+        with:
+          name: WinUEFI
+          path: bin/
+      - name: Build the EXE installer
+        run: |
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\bin\WinUEFI-setup.iss"
+        shell: cmd
+
+      - uses: actions/upload-artifact@v3
+        with:
+         name: WinUEFI
+         path: "build/WinUEFI-setup.exe"
