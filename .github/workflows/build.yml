@@ -44,7 +44,11 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
-         path: bin/*.exe
+         path: |
+           bin/*.exe
+           bin/*.iso
+           bin/*.bat
+           bin/*.ps1
  
   build_installer:
    needs: build_exe
