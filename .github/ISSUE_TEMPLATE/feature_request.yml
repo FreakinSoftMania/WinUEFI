@@ -11,7 +11,7 @@ body:
   attributes:
     label: Describe the suggestion
     description: A clear and concise description of what the suggestion is.
-  validations:
+  attributes:
     required: true
     attributes:
     label: Possible duplicate
