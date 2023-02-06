@@ -25,12 +25,14 @@ body:
     required: true
  - type: textarea
    id: alternatives
-   label: Describe alternatives you've considered
-   description: List any alternatives you might have tried to fix the bug you want.
+   attributes:
+     label: Describe alternatives you've considered
+     description: List any alternatives you might have tried to fix the bug you want.
  - type: checkboxes
    id: agreements
-   label: Agreements
-   description: Please agree to the following:
+   attributes:
+     label: Agreements
+     description: Please agree to the following:
    options:
      - label: I have searched for and ensured there isn't already an open issue regarding this.
        required: true
