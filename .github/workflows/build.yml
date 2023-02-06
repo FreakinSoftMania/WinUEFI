@@ -28,10 +28,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Set env
-        run: |
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}+1" >> $GITHUB_ENV
-          echo "REPO_PATH=D:\a\WinUEFI\WinUEFI" >> $GITHUB_ENV
       # Converts the batch file into an executable program for Windows
       - name: Build BAT to EXE application
         run: |
