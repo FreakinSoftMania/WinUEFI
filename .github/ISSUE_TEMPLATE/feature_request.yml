@@ -9,9 +9,10 @@ body:
       Thanks for taking the time to fill out this idea for Easy UEFI! Fill out the following form to your best ability to help us know what you like to see in this program.
 - type: textarea
   attributes:
-    required: true
     label: Describe the suggestion
     description: A clear and concise description of what the suggestion is.
+  validations:
+    required: true
   attributes:
     label: Possible duplicate
     description: Possible duplicates of this suggestion
