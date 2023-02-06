@@ -13,6 +13,5 @@ body:
     description: A clear and concise description of what the suggestion is.
   attributes:
     required: true
-    attributes:
     label: Possible duplicate
     description: Possible duplicates of this suggestion
