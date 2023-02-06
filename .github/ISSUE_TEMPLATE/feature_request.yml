@@ -8,6 +8,7 @@ body:
     value: |
       Thanks for taking the time to fill out this idea for Easy UEFI! Fill out the following form to your best ability to help us know what you like to see in this program.
 - type: textarea
+  id: suggestion-description
   attributes:
     label: Describe the suggestion
     description: A clear and concise description of what the suggestion is.
@@ -17,6 +18,8 @@ body:
   attributes:
     label: Possible duplicate
     description: Possible duplicates of this suggestion
+- type: dropdown
+  id: version
   attributes:
     label: Version
     description: What version of our software are you running?
