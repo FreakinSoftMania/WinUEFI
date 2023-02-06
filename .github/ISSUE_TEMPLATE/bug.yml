@@ -1,5 +1,4 @@
----
-name: "Bug report"
+name: Bug report
 description: Send a bug WinUEFI has that needs to be fixed
 title: "[BUG] <title>"
 labels: [bug]
