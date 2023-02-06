@@ -1,4 +1,4 @@
-name: Add bugs to bugs project
+name: Add suggestions/enhancements to WinUEFI v2 project
 
 on:
   issues:
