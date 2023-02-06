@@ -18,7 +18,9 @@ body:
       - Low
       - Normal
       - High
-      - Very high (**URGENT**)
+      - Very high (URGENT)
+  validations:
+    required: true
 - type: textarea
   id: suggestion-description
   attributes:
