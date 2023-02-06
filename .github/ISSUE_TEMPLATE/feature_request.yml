@@ -8,6 +8,17 @@ body:
   attributes:
     value: |
       Thanks for taking the time to fill out this idea for Easy UEFI! Fill out the following form to your best ability to help us know what you like to see in this program.
+- type: dropdown
+  id: priority
+  attributes:
+    label: Priority
+    description: What is the priority of this issue?
+    options:
+      - Very low
+      - Low
+      - Normal
+      - High
+      - Very high (**URGENT**)
 - type: textarea
   id: suggestion-description
   attributes:
