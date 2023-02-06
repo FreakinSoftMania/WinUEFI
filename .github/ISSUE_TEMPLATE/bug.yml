@@ -32,7 +32,7 @@ body:
   id: agreements
   attributes:
     label: Agreements
-    description: Please agree to the following:
+    description: 'Please agree to the following:'
     options:
       - label: I have searched for and ensured there isn't already an open issue regarding this.
       required: true
