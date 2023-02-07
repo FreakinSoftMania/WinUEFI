@@ -27,6 +27,6 @@ jobs:
       - uses: actions/add-to-project@v0.4.0
         with:
           project-url: https://github.com/orgs/FreakinSoftMania/projects/2
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
           labeled: enhancement, suggestion
           label-operator: OR
