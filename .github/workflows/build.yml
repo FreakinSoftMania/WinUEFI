@@ -65,3 +65,19 @@ jobs:
         with:
          name: WinUEFI
          path: "bin/WinUEFI-setup.exe"
+  build_iso:
+   needs: build_installer
+   runs-on: windows-latest
+   steps:
+      - uses: actions/checkout@v3
+      
+      - uses: download-artifact@v3
+        with:
+          name: WinUEFI
+          path: bin/
+    
+      - name: Copy setup
+        run: copy "%REPO_PATH%\bin\WinUEFI-setup.exe" "%REPO_PATH%\bin\ISO\autorun.exe"
+        
+      - name: Create .ISO disk image
+        run: '"%REPO_PATH\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\bin\ISO\" /DEST "%REPO_PATH%\bin\WinUEFI-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE'
