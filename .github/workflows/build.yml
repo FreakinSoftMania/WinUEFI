@@ -69,7 +69,7 @@ jobs:
          path: "bin/WinUEFI-setup.exe"
   build_iso:
     name: Build .ISO disk image
-    needs: build_installer
+    needs: [build_exe, build_installer]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
