@@ -76,7 +76,7 @@ jobs:
       
       - uses: actions/download-artifact@v3
         with:
-          name: WinUEFI
+          name: WinUEFI_nightly
           path: bin/
     
       - name: Copy setup
@@ -89,5 +89,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-         name: WinUEFI
+         name: WinUEFI_nightly
          path: "bin/WinUEFI_nightly-setup.iso"
