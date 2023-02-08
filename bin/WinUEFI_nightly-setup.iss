@@ -24,7 +24,7 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=WinUEFI-setup
+OutputBaseFilename=WinUEFI_nightly-setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
