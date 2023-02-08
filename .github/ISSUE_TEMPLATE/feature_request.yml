@@ -1,18 +1,53 @@
 ---
 name: Feature Request
-description: Suggest an idea for Easy UEFI
-labels: suggestion
+description: Suggest an idea for WinUEFI
+title: "[SUGGESTION] <title>"
+labels: [suggestion, enhancement]
 body:
 - type: markdown
   attributes:
     value: |
-      Thanks for taking the time to fill out this idea for Easy UEFI! Fill out the following form to your best ability to help us know what you like to see in this program.
+      Thanks for taking the time to fill out this idea for WinUEFI! Fill out the following form to your best ability to help us know what you like to see in this program.
+- type: dropdown
+  id: priority
+  attributes:
+    label: Priority
+    description: What is the priority of this feature request?
+    options:
+      - Very low
+      - Low
+      - Normal
+      - High
+      - Very high (URGENT)
+  validations:
+    required: true
 - type: textarea
+  id: suggestion-description
   attributes:
     label: Describe the suggestion
     description: A clear and concise description of what the suggestion is.
   validations:
     required: true
-    attributes:
+- type: textarea
+  attributes:
     label: Possible duplicate
     description: Possible duplicates of this suggestion
+- type: dropdown
+  id: version
+  attributes:
+    label: Version
+    description: What version of our software are you running?
+    options:
+      - v1.9.1
+      - v1.9.0
+      - v1.8.0
+      - v1.7.0
+      - v1.6.0
+      - v1.5.0
+      - v1.4.0 (legacy)
+      - v1.3(.0) (legacy)
+      - v1.2(.0) (legacy)
+      - v1.1(.0) (legacy)
+      - v1.0(.0) (legacy)
+  validations:
+    required: true

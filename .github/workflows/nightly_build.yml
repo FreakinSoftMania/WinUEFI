@@ -1,0 +1,93 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build nightly EXE application, installer and disk image
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Sets environent variables for the complete workflow
+env:
+  REPO_PATH: 'D:\a\WinUEFI\WinUEFI'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_exe:
+    name: Build EXE
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Converts the batch file into an executable program for Windows
+      - name: Build BAT to EXE application
+        run: |
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI-console.bat" /exe "%REPO_PATH%\bin\WinUEFI_nightly-console.exe" /x64 /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI_nightly.exe" /x64 /invisible /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI-console.bat" /exe "%REPO_PATH%\bin\WinUEFI_nightly-x86-console.exe" /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI_nightly-x86.exe" /icon /invisible "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+        shell: cmd
+
+      - uses: actions/upload-artifact@v3
+        with:
+         name: WinUEFI_nightly
+         path: |
+           bin/*.exe
+           bin/*.iso
+           bin/*.bat
+           bin/*.ps1
+ 
+  build_installer:
+    name: Build installer
+    needs: build_exe
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+   
+      - uses: actions/download-artifact@v3
+        with:
+          name: WinUEFI_nightly
+          path: bin/
+      - name: Build the EXE installer
+        run: |
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\bin\WinUEFI_nightly-setup.iss"
+        shell: cmd
+
+      - uses: actions/upload-artifact@v3
+        with:
+         name: WinUEFI_nightly
+         path: "bin/WinUEFI_nightly-setup.exe"
+  build_iso:
+    name: Build .ISO disk image
+    needs: [build_exe, build_installer]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: WinUEFI_nightly
+          path: bin/
+    
+      - name: Copy setup
+        run: copy "%REPO_PATH%\bin\WinUEFI_nightly-setup.exe" "%REPO_PATH%\bin\ISO_nightly\autorun.exe"
+        shell: cmd
+        
+      - name: Create .ISO disk image
+        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\bin\ISO_nightly\" /DEST "%REPO_PATH%\bin\WinUEFI_nightly-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Nightly Setup" /VOLUMELABEL_JOLIET "WinUEFI_Nightly-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+        shell: cmd
+
+      - uses: actions/upload-artifact@v3
+        with:
+         name: WinUEFI_nightly
+         path: "bin/WinUEFI_nightly-setup.iso"

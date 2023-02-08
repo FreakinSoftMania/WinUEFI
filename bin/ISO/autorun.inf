@@ -1,0 +1,4 @@
+[autorun]
+label=WinUEFI Setup
+open=autorun.exe
+icon=autorun.exe,0
