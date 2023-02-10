@@ -32,20 +32,20 @@ jobs:
       # Converts the batch file into an executable program for Windows
       - name: Build BAT to EXE application
         run: |
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI-console.bat" /exe "%REPO_PATH%\bin\WinUEFI-console.exe" /x64 /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI.exe" /x64 /invisible /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI-console.bat" /exe "%REPO_PATH%\bin\WinUEFI-x86-console.exe" /icon "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
-          "%REPO_PATH%\Bat.exe" /bat "%REPO_PATH%\bin\WinUEFI.bat" /exe "%REPO_PATH%\bin\WinUEFI-x86.exe" /icon /invisible "%REPO_PATH%\bin\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI-console.bat" /exe "%REPO_PATH%\src\WinUEFI-console.exe" /x64 /icon "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI.bat" /exe "%REPO_PATH%\src\WinUEFI.exe" /x64 /invisible /icon "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
+          "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI-console.bat" /exe "%REPO_PATH%\src\WinUEFI-x86-console.exe" /icon "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
+          "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI.bat" /exe "%REPO_PATH%\src\WinUEFI-x86.exe" /icon /invisible "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
         shell: cmd
 
       - uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
          path: |
-           bin/*.exe
-           bin/*.iso
-           bin/*.bat
-           bin/*.ps1
+           build/*.exe
+           build/*.iso
+           src/*.bat
+           src/*.ps1
  
   build_installer:
     name: Build installer
@@ -57,16 +57,16 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: WinUEFI
-          path: bin/
+          path: src/
       - name: Build the EXE installer
         run: |
-          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\bin\WinUEFI-setup.iss"
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\src\WinUEFI-setup.iss"
         shell: cmd
 
       - uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
-         path: "bin/WinUEFI-setup.exe"
+         path: "src/WinUEFI-setup.exe"
   build_iso:
     name: Build .ISO disk image
     needs: [build_exe, build_installer]
@@ -77,17 +77,17 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: WinUEFI
-          path: bin/
+          path: src/
     
       - name: Copy setup
-        run: copy "%REPO_PATH%\bin\WinUEFI-setup.exe" "%REPO_PATH%\bin\ISO\autorun.exe"
+        run: copy "%REPO_PATH%\src\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
         shell: cmd
         
       - name: Create .ISO disk image
-        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\bin\ISO\" /DEST "%REPO_PATH%\bin\WinUEFI-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\src\WinUEFI-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
         shell: cmd
 
       - uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
-         path: "bin/WinUEFI-setup.iso"
+         path: "src/WinUEFI-setup.iso"
