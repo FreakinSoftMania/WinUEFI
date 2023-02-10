@@ -78,6 +78,10 @@ jobs:
         with:
           name: WinUEFI
           path: ./
+      
+      - name: Move setup
+        run: move "%REPO_PATH%\WinUEFI-setup.exe" "%REPO_PATH%\build\"
+        shell: cmd
     
       - name: Copy setup
         run: copy "%REPO_PATH%\build\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
