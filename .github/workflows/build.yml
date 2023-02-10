@@ -57,7 +57,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: WinUEFI
-          path: src/
+          path: ./
       - name: Build the EXE installer
         run: |
           "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\src\WinUEFI-setup.iss"
@@ -77,7 +77,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: WinUEFI
-          path: src/
+          path: ./
     
       - name: Copy setup
         run: copy "%REPO_PATH%\src\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
