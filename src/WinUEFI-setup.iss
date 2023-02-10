@@ -43,10 +43,10 @@ Name: "uefi32condesktopicon"; Description: "WinUEFI (32-bit) Console icon"; \
     GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "D:\a\WinUEFI\WinUEFI\build\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI-console.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\src\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\src\WinUEFI-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\src\WinUEFI-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\src\WinUEFI-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
