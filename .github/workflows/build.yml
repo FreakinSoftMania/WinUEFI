@@ -80,7 +80,7 @@ jobs:
           path: ./
     
       - name: Copy setup
-        run: copy "%REPO_PATH%\src\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
+        run: copy "%REPO_PATH%\build\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
         shell: cmd
         
       - name: Create .ISO disk image
