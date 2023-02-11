@@ -72,8 +72,8 @@ jobs:
         with:
          name: WinUEFI
          path: "build/WinUEFI-setup.exe"
-  build_iso:
-    name: Build .ISO disk image
+  build_disk_images:
+    name: Build disk images (.ISO and .IMG)
     needs: [build_exe, build_installer]
     runs-on: windows-latest
     steps:
@@ -88,8 +88,10 @@ jobs:
         run: copy "%REPO_PATH%\build\WinUEFI-setup.exe" "%REPO_PATH%\src\ISO\autorun.exe"
         shell: cmd
         
-      - name: Create .ISO disk image
-        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+      - name: Create .ISO and .IMG disk image
+        run: |
+          '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+          '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI-setup.img" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
         shell: cmd
 
       - uses: actions/upload-artifact@v3
@@ -97,5 +99,6 @@ jobs:
          name: WinUEFI
          path: |
            build/*.iso
+           build/*.img
            build/*.mds
            build/*.dvd
