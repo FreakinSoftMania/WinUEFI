@@ -62,7 +62,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: WinUEFI
-          path: ./
+          path: build/
       - name: Build the EXE installer
         run: |
           "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\src\WinUEFI-setup.iss"
