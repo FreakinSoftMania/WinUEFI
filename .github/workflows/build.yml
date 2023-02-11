@@ -95,4 +95,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
-         path: "build/WinUEFI-setup.iso"
+         path: |
+           build/*.iso
+           build/*.mds
+           build/*.dvd
