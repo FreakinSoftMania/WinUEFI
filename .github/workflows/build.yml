@@ -32,6 +32,7 @@ jobs:
       # Temporary copies files from source folder to build folder to easily build it into an artifact
       - name: Temporary copy source files
         run: copy "%REPO_PATH%\src\*" "%REPO_PATH%\build\*"
+        shell: cmd
 
       # Converts the batch file into an executable program for Windows
       - name: Build BAT to EXE application
