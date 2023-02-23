@@ -89,16 +89,22 @@ jobs:
         shell: cmd
         
       - name: Create .ISO disk image
-        uses: Minionguyjpro/Create-Disk-Image-Action@v2
+        uses: Minionguyjpro/Create-Disk-Image-Action@v3
         with:
           path: src\ISO\
-          filename: build\WinUEFI-setup.iso
+          filename: WinUEFI-setup.iso
+          output-dir: build
           label: WinUEFI Setup
           push: false
           
-      - name: Create .IMG disk image    
-        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI-setup.img" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
-        shell: cmd
+      - name: Create .IMG disk image
+        uses: Minionguyjpro/Create-Disk-Image-Action@v3
+        with:
+          path: src\ISO\
+          filename: WinUEFI-setup.img
+          output-dir: build
+          label: WinUEFI Setup
+          push: false
 
       - uses: actions/upload-artifact@v3
         with:

@@ -18,7 +18,7 @@ AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\{#MyAppName}
-OutputDir=D:\a\WinUEFI\WinUEFI\bin\
+OutputDir=D:\a\WinUEFI\WinUEFI\build\
 ChangesAssociations=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
@@ -43,10 +43,10 @@ Name: "uefi32condesktopicon"; Description: "WinUEFI Nightly (32-bit) Console ico
     GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "D:\a\WinUEFI\WinUEFI\bin\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\bin\WinUEFI_nightly-console.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\bin\WinUEFI_nightly-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\a\WinUEFI\WinUEFI\bin\WinUEFI_nightly-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\build\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI_nightly-console.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI_nightly-x86.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\WinUEFI\WinUEFI\build\WinUEFI_nightly-x86-console.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
