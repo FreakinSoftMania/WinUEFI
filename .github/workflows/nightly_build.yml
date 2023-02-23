@@ -92,7 +92,8 @@ jobs:
         uses: Minionguyjpro/Create-Disk-Image-Action@v2
         with:
           path: src\ISO_nightly\
-          filename: build\WinUEFI_nightly-setup.iso
+          filename: WinUEFI_nightly-setup.iso
+          output-dir: build
           label: WinUEFI Nightly Setup
           push: false
           
@@ -100,7 +101,8 @@ jobs:
         uses: Minionguyjpro/Create-Disk-Image-Action@v3
         with:
           path: src\ISO_nightly\
-          filename: build\WinUEFI_nightly-setup.img
+          filename: WinUEFI_nightly-setup.img
+          output-dir: build
           label: WinUEFI Nightly Setup
           push: false
 

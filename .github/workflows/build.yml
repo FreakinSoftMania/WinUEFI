@@ -92,7 +92,8 @@ jobs:
         uses: Minionguyjpro/Create-Disk-Image-Action@v3
         with:
           path: src\ISO\
-          filename: build\WinUEFI-setup.iso
+          filename: WinUEFI-setup.iso
+          output-dir: build
           label: WinUEFI Setup
           push: false
           
@@ -100,7 +101,8 @@ jobs:
         uses: Minionguyjpro/Create-Disk-Image-Action@v3
         with:
           path: src\ISO\
-          filename: build\WinUEFI-setup.img
+          filename: WinUEFI-setup.img
+          output-dir: build
           label: WinUEFI Setup
           push: false
 
