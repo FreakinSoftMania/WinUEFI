@@ -89,22 +89,12 @@ jobs:
         shell: cmd
         
       - name: Create .ISO disk image
-        uses: Minionguyjpro/Create-Disk-Image-Action@v2
-        with:
-          path: src\ISO_nightly\
-          filename: WinUEFI_nightly-setup.iso
-          output-dir: build
-          label: WinUEFI Nightly Setup
-          push: false
+        run: '"%REPO_PATH%\src\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO_nightly\" /DEST "%REPO_PATH%\src\WinUEFI_nightly-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Nightly Setup" /VOLUMELABEL_JOLIET "WinUEFI_Nightly-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+        shell: cmd
           
-      - name: Create .IMG disk image
-        uses: Minionguyjpro/Create-Disk-Image-Action@v3
-        with:
-          path: src\ISO_nightly\
-          filename: WinUEFI_nightly-setup.img
-          output-dir: build
-          label: WinUEFI Nightly Setup
-          push: false
+      - name: Create .IMG disk image    
+        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI_nightly-setup.img" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+        shell: cmd
 
       - uses: actions/upload-artifact@v3
         with:
