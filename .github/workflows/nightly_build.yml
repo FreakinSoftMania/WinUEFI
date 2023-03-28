@@ -89,7 +89,7 @@ jobs:
         shell: cmd
         
       - name: Create .ISO disk image
-        run: '"%REPO_PATH%\src\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO_nightly\" /DEST "%REPO_PATH%\src\WinUEFI_nightly-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Nightly Setup" /VOLUMELABEL_JOLIET "WinUEFI_Nightly-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
+        run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO_nightly\" /DEST "%REPO_PATH%\src\WinUEFI_nightly-setup.iso" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Nightly Setup" /VOLUMELABEL_JOLIET "WinUEFI_Nightly-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
         shell: cmd
           
       - name: Create .IMG disk image    
