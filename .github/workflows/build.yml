@@ -51,6 +51,7 @@ jobs:
            build/*.iso
            build/*.bat
            build/*.ps1
+           build/*.py
  
   build_installer:
     name: Build installer
