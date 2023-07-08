@@ -56,6 +56,7 @@ jobs:
         with:
           name: WinUEFI
           path: build/
+          
       - name: Build the EXE installer
         run: |
           "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\src\WinUEFI_nightly-setup.iss"
@@ -113,9 +114,9 @@ jobs:
       
       - name: Download artifact
         uses: actions/download-artifact@v3
-         with:
-           name: WinUEFI
-           path: build/
+        with:
+          name: WinUEFI
+          path: build/
       
       - name: Generate checksums
         uses: jmgilman/actions-generate-checksum@v1
