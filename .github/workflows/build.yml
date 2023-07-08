@@ -42,8 +42,9 @@ jobs:
           "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI-console.bat" /exe "%REPO_PATH%\build\WinUEFI-x86-console.exe" /icon "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
           "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI.bat" /exe "%REPO_PATH%\build\WinUEFI-x86.exe" /icon /invisible "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 32-bit"
         shell: cmd
-
-      - uses: actions/upload-artifact@v3
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
          path: |
@@ -52,6 +53,7 @@ jobs:
            build/*.bat
            build/*.ps1
            build/*.py
+           build/*.txt
  
   build_installer:
     name: Build installer
@@ -80,7 +82,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - uses: actions/download-artifact@v3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
         with:
           name: WinUEFI
           path: build/
@@ -97,7 +100,8 @@ jobs:
         run: '"%REPO_PATH%\bin\ImgBurn\ImgBurn.exe" /MODE BUILD /BUILDINPUTMODE STANDARD /BUILDOUTPUTMODE IMAGEFILE /SRC "%REPO_PATH%\src\ISO\" /DEST "%REPO_PATH%\build\WinUEFI-setup.img" /FILESYSTEM "ISO9660 + Joliet" /VOLUMELABEL_ISO9660 "WinUEFI Setup" /VOLUMELABEL_JOLIET "WinUEFI-Setup" /OVERWRITE YES /ROOTFOLDER YES /START /CLOSE /NOIMAGEDETAILS'
         shell: cmd
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
          name: WinUEFI
          path: |
@@ -105,3 +109,30 @@ jobs:
            build/*.img
            build/*.mds
            build/*.dvd
+  get_file_checksums:
+    name: Get file checksums
+    needs: [build_exe, build_installer, build_disk_images]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: WinUEFI
+          path: build/
+      
+      - name: Generate checksums
+        uses: jmgilman/actions-generate-checksum@v1
+        with:
+          output: build/checksums.txt
+          patterns: |
+            build/*.exe
+            build/*.iso
+            build/*.bat
+            build/*.ps1
+            build/*.py
+            build/*.iso
+            build/*.img
+            build/*.mds
+            build/*.dvd
