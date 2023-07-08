@@ -126,7 +126,7 @@ jobs:
           registry: ${{ env.GITHUB_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          tags: ${{ github.ref_name }}
+          tags: main
           pushImage: false
         if: ${{ github.event_name != 'release' }}
       
@@ -140,7 +140,7 @@ jobs:
           registry: ${{ env.GITHUB_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          tags: ${{ github.ref_name }}
+          tags: main
           pushImage: true
         if: ${{ github.event_name == 'release' }}
   test:
