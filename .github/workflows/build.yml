@@ -1,40 +1,29 @@
-# This is a basic workflow to help you get started with Actions
+# The workflow for building the stable (regular) version of WinUEFI
 
 name: Build EXE application, installer and disk image
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # Sets environent variables for the complete workflow
+  
 env:
   REPO_PATH: 'D:\a\WinUEFI\WinUEFI'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build_exe:
     name: Build EXE
-    # The type of runner that the job will run on
     runs-on: windows-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    
       - uses: actions/checkout@v3
       
-      # Temporary copies files from source folder to build folder to easily build it into an artifact
       - name: Temporary copy source files
         run: copy "%REPO_PATH%\src\*" "%REPO_PATH%\build\*"
         shell: cmd
 
-      # Converts the batch file into an executable program for Windows
       - name: Build BAT to EXE application
         run: |
           "%REPO_PATH%\bin\bat_to_exe\bat_to_exe.exe" /bat "%REPO_PATH%\src\WinUEFI-console.bat" /exe "%REPO_PATH%\build\WinUEFI-console.exe" /x64 /icon "%REPO_PATH%\src\logo.ico" /uac-admin /productversion "${{ env.RELEASE_VERSION }}" /internalname "WinUEFI 64-bit"
@@ -60,6 +49,7 @@ jobs:
     needs: build_exe
     runs-on: windows-latest
     steps:
+    
       - uses: actions/checkout@v3
    
       - name: Download artifact
@@ -78,11 +68,13 @@ jobs:
         with:
           name: WinUEFI
           path: "build/WinUEFI-setup.exe"
+          
   build_disk_images:
     name: Build disk images (.ISO and .IMG)
     needs: [build_exe, build_installer]
     runs-on: windows-latest
     steps:
+    
       - uses: actions/checkout@v3
       
       - name: Download artifact
@@ -112,11 +104,13 @@ jobs:
             build/*.img
             build/*.mds
             build/*.dvd
+            
   get_file_checksums:
     name: Get file checksums
     needs: [build_exe, build_installer, build_disk_images]
     runs-on: windows-latest
     steps:
+    
       - uses: actions/checkout@v3
       
       - name: Download artifact
