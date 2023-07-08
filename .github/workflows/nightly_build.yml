@@ -45,13 +45,13 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-         name: WinUEFI
-         path: |
-           build/*.exe
-           build/*.iso
-           build/*.bat
-           build/*.ps1
-           build/*.py
+          name: WinUEFI
+          path: |
+            build/*.exe
+            build/*.iso
+            build/*.bat
+            build/*.ps1
+            build/*.py
  
   build_installer:
     name: Build installer
@@ -71,8 +71,8 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-         name: WinUEFI
-         path: "build/WinUEFI_nightly-setup.exe"
+          name: WinUEFI
+          path: "build/WinUEFI_nightly-setup.exe"
   build_disk_images:
     name: Build disk images (.ISO and .IMG)
     needs: [build_exe, build_installer]
@@ -99,16 +99,16 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-         name: WinUEFI
-         path: |
-           build/*.iso
-           build/*.img
-           build/*.mds
-           build/*.dvd
+          name: WinUEFI
+          path: |
+            build/*.iso
+            build/*.img
+            build/*.mds
+            build/*.dvd
   get_file_checksums:
     name: Get file checksums
     needs: [build_exe, build_installer, build_disk_images]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v3
       
@@ -132,3 +132,9 @@ jobs:
              build/*.img
              build/*.mds
              build/*.dvd
+      
+       - name: Upload artifact
+         uses: actions/upload-artifact@v3
+         with:
+           name: WinUEFI
+           path: "build/checksums.txt"
