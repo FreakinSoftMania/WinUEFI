@@ -148,4 +148,6 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    container: minionguyjpro/google_repo:main
+    steps:
+      - name: Run Docker image
+        run: docker run -it minionguyjpro/winuefi
