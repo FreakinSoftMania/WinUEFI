@@ -28,7 +28,7 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read
       packages: write
@@ -147,7 +147,7 @@ jobs:
         if: ${{ github.event_name == 'release' }}
   test:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Run Docker image
         run: docker run -it minionguyjpro/winuefi
