@@ -108,7 +108,7 @@ jobs:
   get_file_checksums:
     name: Get file checksums
     needs: [build_exe, build_installer, build_disk_images]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     
       - uses: actions/checkout@v3
