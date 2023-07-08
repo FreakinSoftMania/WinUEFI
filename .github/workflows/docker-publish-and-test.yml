@@ -94,7 +94,7 @@ jobs:
         id: build-and-push_docker
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ env.IMAGE_NAME }}
+          image: minionguyjpro/winuefi
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -108,7 +108,7 @@ jobs:
         id: build-and-push_docker_release
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ env.IMAGE_NAME }}
+          image: minionguyjpro/winuefi
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -122,7 +122,7 @@ jobs:
         id: build-and-push
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ env.IMAGE_NAME }}
+          image: freakinsoftmania/winuefi
           registry: ${{ env.GITHUB_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -136,7 +136,7 @@ jobs:
         id: build-and-push_release
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ env.IMAGE_NAME }}
+          image: freakinsoftmania/winuefi
           registry: ${{ env.GITHUB_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
