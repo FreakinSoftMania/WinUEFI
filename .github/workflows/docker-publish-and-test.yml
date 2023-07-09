@@ -148,4 +148,5 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Run Docker image
-        run: docker run minionguyjpro/winuefi || exit 0
+        run: docker run minionguyjpro/winuefi || exit /b 0
+        shell: cmd
