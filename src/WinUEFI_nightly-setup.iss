@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WinUEFI"
-#define MyAppVersion "1.9.2"
+#define MyAppVersion "nightly"
 #define MyAppPublisher "Minionguyjpro"
 #define MyAppExeName "WinUEFI_nightly.exe"
 #define MyAppAssocName MyAppName + ""
