@@ -1,0 +1,32 @@
+{
+  "name": "winuefi",
+  "version": "1.9.3",
+  "description": "A program to easily go into the UEFI/BIOS in Windows",
+  "main": "src/WinUEFI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FreakinSoftMania/WinUEFI.git"
+  },
+  "keywords": [
+    "windows",
+    "powershell",
+    "boot",
+    "batch",
+    "uefi",
+    "batch-file",
+    "easy",
+    "bios",
+    "windows-nt",
+    "easy-uefi",
+    "winuefi"
+  ],
+  "author": "FreakinSoftMania",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FreakinSoftMania/WinUEFI/issues"
+  },
+  "homepage": "https://github.com/FreakinSoftMania/WinUEFI#readme"
+}
