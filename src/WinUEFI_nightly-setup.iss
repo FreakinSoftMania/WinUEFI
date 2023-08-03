@@ -3,7 +3,7 @@
 
 #define MyAppName "WinUEFI"
 #define MyAppVersion "nightly"
-#define MyAppPublisher "Minionguyjpro"
+#define MyAppPublisher "FreakinSoftMania"
 #define MyAppExeName "WinUEFI_nightly.exe"
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".exe"
