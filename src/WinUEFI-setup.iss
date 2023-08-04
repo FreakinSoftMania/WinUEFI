@@ -67,7 +67,7 @@ Name: "{autodesktop}\WinUEFI (32-bit) Console"; \
     Filename: "{app}\WinUEFI-x86-console.exe"; Tasks: uefi32condesktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall; Check: NoRunSwitch
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Check: NoRunSwitch
 
 
 [Code]
