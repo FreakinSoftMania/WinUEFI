@@ -4,7 +4,7 @@ name: Build EXE application, installer and disk image
 
 on:
   push:
-    branches: [ '*']
+    branches: [ '*' ]
     tags: [ 'v*' ]
   pull_request:
   workflow_dispatch:
@@ -36,9 +36,9 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        arch: [amd64, i386]
-        arch_name: [x64, x86]
-        arch_name_full: [64-bit, 32-bit]
+        config:
+          - { arch: amd64, arch_name: x64, arch_name_full: "64-bit" }
+          - { arch: i386, arch_name: x86, arch_name_full: "32-bit" }
     steps:
     
       - uses: actions/checkout@v3
@@ -49,8 +49,8 @@ jobs:
 
       - name: Build BAT to EXE application
         run: |
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.arch }}-console.exe" /${{ matrix.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.arch_name_full }}"
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.arch }}.exe" /${{ matrix.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}-console.exe" /${{ matrix.config.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}.exe" /${{ matrix.config.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
         shell: cmd
       
       - name: Upload artifact
