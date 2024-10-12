@@ -13,35 +13,42 @@ jobs:
   set_version:
     name: Set version variable
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_version_branch.outputs.version || steps.set_version_tag.outputs.version || steps.set_version_pr.outputs.version || steps.set_version_manual.outputs.version }}
     steps:
-    
       - name: Set VERSION for branch
+        id: set_version_branch
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
-        run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "::set-output name=version::${{ github.sha }}"
 
       - name: Set VERSION for tag
+        id: set_version_tag
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-        run: echo "VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+        run: echo "::set-output name=version::${{ github.ref_name }}"
 
       - name: Set VERSION for pull request
+        id: set_version_pr
         if: github.event_name == 'pull_request'
-        run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "::set-output name=version::${{ github.sha }}"
 
       - name: Set VERSION for manual dispatch
+        id: set_version_manual
         if: github.event_name == 'workflow_dispatch'
-        run: echo "VERSION=${{ github.sha }}" >> $GITHUB_ENV
+        run: echo "::set-output name=version::${{ github.sha }}"
 
   build_exe:
     name: Build EXE
     runs-on: windows-latest
+    needs: set_version
     strategy:
       matrix:
         config:
           - { arch: amd64, arch_name: x64, arch_name_full: "64-bit" }
           - { arch: i386, arch_name: x86, arch_name_full: "32-bit" }
+    env:
+      VERSION: ${{ needs.set_version.outputs.version }}
     steps:
-    
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Make build directory
         run: mkdir build
@@ -49,23 +56,22 @@ jobs:
 
       - name: Build BAT to EXE application
         run: |
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}-console.exe" /${{ matrix.config.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "%VERSION%" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}.exe" /${{ matrix.config.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "%VERSION%" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}-console.exe" /${{ matrix.config.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}.exe" /${{ matrix.config.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
         shell: cmd
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: WinUEFI
           path: build/*.exe
  
   build_installer:
     name: Build installer
-    needs: build_exe
+    needs: [set_version, build_exe]
     runs-on: windows-latest
     steps:
-    
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
    
       - name : Make build directory
         run: mkdir build
@@ -79,22 +85,21 @@ jobs:
           
       - name: Build the EXE installer
         run: |
-          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.WORKSPACE }}\src\WinUEFI-setup.iss"
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.workspace }}\src\WinUEFI-setup.iss"
         shell: cmd
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: WinUEFI
           path: build/WinUEFI-setup.exe
           
   build_disk_images:
     name: Build disk images (.ISO and .IMG)
-    needs: [build_exe, build_installer]
+    needs: [set_version, build_exe, build_installer]
     runs-on: windows-latest
     steps:
-    
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -115,7 +120,7 @@ jobs:
         shell: cmd
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: WinUEFI
           path: |
@@ -126,11 +131,10 @@ jobs:
             
   get_checksums_and_release:
     name: Get file checksums
-    needs: [build_exe, build_installer, build_disk_images]
+    needs: [set_version, build_exe, build_installer, build_disk_images]
     runs-on: ubuntu-latest
     steps:
-    
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -153,7 +157,7 @@ jobs:
             src/*.py
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: WinUEFI
           path: build/checksums.txt
@@ -163,7 +167,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
-          title: "WinUEFI ${{ env.VERSION }}"
+          title: "WinUEFI ${{ needs.set_version.outputs.version }}"
           files: |
             build/*.txt
             build/*.exe
@@ -174,3 +178,4 @@ jobs:
             src/*.bat
             src/*.ps1
             src/*.py
+            
