@@ -61,7 +61,7 @@ jobs:
         shell: cmd
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: WinUEFI
           path: build/*.exe
@@ -89,7 +89,7 @@ jobs:
         shell: cmd
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: WinUEFI
           path: build/WinUEFI-setup.exe
@@ -120,7 +120,7 @@ jobs:
         shell: cmd
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: WinUEFI
           path: |
@@ -157,7 +157,7 @@ jobs:
             src/*.py
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: WinUEFI
           path: build/checksums.txt
