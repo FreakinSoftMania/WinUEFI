@@ -49,8 +49,8 @@ jobs:
 
       - name: Build BAT to EXE application
         run: |
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}-console.exe" /${{ matrix.config.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
-          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}.exe" /${{ matrix.config.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "${{ env.VERSION }}" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI-console.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}-console.exe" /${{ matrix.config.arch_name }} /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "%VERSION%" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
+          "${{ github.workspace }}\bin\bat_to_exe\bat_to_exe.exe" /bat "${{ github.workspace }}\src\WinUEFI.bat" /exe "${{ github.workspace }}\build\WinUEFI-${{ matrix.config.arch }}.exe" /${{ matrix.config.arch_name }} /invisible /icon "${{ github.workspace }}\src\logo.ico" /uac-admin /productversion "%VERSION%" /internalname "WinUEFI ${{ matrix.config.arch_name_full }}"
         shell: cmd
       
       - name: Upload artifact

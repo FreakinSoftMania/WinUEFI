@@ -58,7 +58,7 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#AppExeName}\SupportedTypes";
 
 [Icons]
 Name: "{autodesktop}\{#AppName}"; \
-    Filename: "{app}\{#AppExeName}"; Tasks: appdesktopicon
+    Filename: "{app}\{#AppExeName}"; Tasks: app64desktopicon
 Name: "{autodesktop}\WinUEFI (64-bit) Console"; \
     Filename: "{app}\WinUEFI-amd64-console.exe"; Tasks: app64condesktopicon
 Name: "{autodesktop}\WinUEFI (32-bit)"; \
@@ -68,7 +68,6 @@ Name: "{autodesktop}\WinUEFI (32-bit) Console"; \
 
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent; Check: NoRunSwitch
-
 
 [Code]
 function NoRunSwitch: boolean;
@@ -84,4 +83,3 @@ begin
     if not Result then break;
   end;
 end;
-
