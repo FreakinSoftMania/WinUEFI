@@ -1,7 +1,9 @@
 @echo off
-set VERSION=${{ github.REF_NAME }}
-echo WinUEFI %VERSION% by FreakinSoftMania
-echo WinUEFI by FreakinSoftMania
+if %VERSION%=="" (
+    echo WinUEFI by FreakinSoftMania 
+) else (
+    echo WinUEFI %VERSION% by FreakinSoftMania
+)
 timeout /t 3 > nul
 echo Rebooting in 3...
 timeout /nobreak /t 1 > nul
