@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define AppName "WinUEFI"
-#define AppVersion "GetEnv('VERSION')"
+#define AppVersion GetEnv('VERSION')
 #define AppPublisher "FreakinSoftMania"
 #define AppExeName "WinUEFI-amd64.exe"
 #define AppAssocName AppName + ""
