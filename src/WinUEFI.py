@@ -1,8 +1,12 @@
 import sys
 import os
 
-if os.name != 'nt':
-    print('Not running on a Windows platform! Exiting...')
+try:
+    if os.name == 'nt':
+        os.system('shutdown /fw /f /r /t 00')
+    else:
+        print('Not running on a Windows platform! Exiting...')
+        sys.exit()
+except Exception as e:
+    print(f'An error occurred: {e}')
     sys.exit()
-if os.name == 'nt':
-    os.system('shutdown /fw /f /r /t 00')

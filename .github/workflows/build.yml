@@ -77,10 +77,6 @@ jobs:
         run: mkdir build
         shell: cmd
 
-      - name: Set VERSION environment variable
-        run: set VERSION=${{ needs.set_version.outputs.version }}
-        shell: cmd
-
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
@@ -89,6 +85,7 @@ jobs:
           
       - name: Build the EXE installer
         run: |
+          set VERSION=${{ needs.set_version.outputs.version }}
           "%programfiles(x86)%\Inno Setup 6\iscc.exe" "${{ github.workspace }}\src\WinUEFI-setup.iss"
         shell: cmd
 
