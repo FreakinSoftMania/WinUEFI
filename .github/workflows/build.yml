@@ -12,7 +12,7 @@ on:
 jobs:
   set_version:
     name: Set version variable
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       version: ${{ steps.set_version_branch.outputs.version || steps.set_version_tag.outputs.version || steps.set_version_pr.outputs.version || steps.set_version_manual.outputs.version }}
     steps:
