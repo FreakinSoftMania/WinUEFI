@@ -73,6 +73,7 @@ jobs:
         id: build-push
         uses: docker/build-push-action@v6
         with:
+          allow: ""
           tags: |
             docker.io/${{ secrets.DOCKER_USERNAME }}/winuefi:${{ steps.meta-docker.outputs.tags }}
             ghcr.io/${{ github.repository }}:${{ steps.meta-docker.outputs.tags }}
