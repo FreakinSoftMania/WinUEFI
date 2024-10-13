@@ -77,7 +77,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           tags: |
-            docker.io/${{ secrets.DOCKER_USERNAME }}/${{ steps.repo-name.outputs._0 }}:${{ steps.meta-docker.outputs.tags }}
+            docker.io/${{ secrets.DOCKER_USERNAME }}/winuefi:${{ steps.meta-docker.outputs.tags }}
             ghcr.io/${{ github.repository }}:${{ steps.meta-docker.outputs.tags }}
             ghcr.io/${{ github.repository }}:latest
           push: ${{ github.event_name != 'pull_request' }}
